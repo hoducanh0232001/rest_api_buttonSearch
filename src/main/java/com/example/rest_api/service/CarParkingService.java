@@ -7,4 +7,9 @@ import java.util.List;
 public interface CarParkingService {
 
     List<Parking> searchAll(String keyword);
+
+
+
 }
+
+
