@@ -20,7 +20,7 @@ function PostFiltersForm(props) {
         const loadPosts = async () => {
 
           const response = await axios.get(
-            "http://localhost:8081/api/v1/parking"
+            "localhost:8686/api/v1/parkigniter"
           );
           setPosts(response.data);
 
@@ -42,7 +42,7 @@ function PostFiltersForm(props) {
             ) {
               return value;
             }
-          }).map((carparking) =>
+          }).map((parkigniter) =>
           <table className="table table-striped ">
           <thead> 
               
@@ -61,17 +61,17 @@ function PostFiltersForm(props) {
           </thead>
           <tbody>
               {
-                  <tr key = {carparking.id}>
-                      <td>{carparking.id}</td>
-                      <td>{carparking.parkingCode}</td>
-                      <td>{carparking.vechile_cat_id}</td>
-                      <td>{carparking.rate_id}</td>
-                      <td>{carparking.slot_id}</td>
-                      <td>{carparking.in_time}</td>
-                      <td>{carparking.out_time}</td>
-                      <td>{carparking.total_time}</td>
-                      <td>{carparking.earned_amount}</td>
-                      <td>{carparking.paid_status}</td>
+                  <tr key = {parkigniter.id}>
+                      <td>{parkigniter.id}</td>
+                      <td>{parkigniter.parkingCode}</td>
+                      <td>{parkigniter.vechile_cat_id}</td>
+                      <td>{parkigniter.rate_id}</td>
+                      <td>{parkigniter.slot_id}</td>
+                      <td>{parkigniter.in_time}</td>
+                      <td>{parkigniter.out_time}</td>
+                      <td>{parkigniter.total_time}</td>
+                      <td>{parkigniter.earned_amount}</td>
+                      <td>{parkigniter.paid_status}</td>
 
                   </tr>
                

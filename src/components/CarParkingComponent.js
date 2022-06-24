@@ -5,13 +5,13 @@ class CarParkingComponent extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            carparking:[]
+            parkigniter:[]
         }
     }
 
     componentDidMount(){
         CarParkingService.getsCarParking().then((response) =>{
-            this.setState({carparking: response.data})
+            this.setState({parkigniter: response.data})
         });
     }
 

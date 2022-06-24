@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const CARPARKING_REST_API_URL = 'http://localhost:8081/api/v1/parking';
+const CARPARKING_REST_API_URL = 'localhost:8686/api/v1/parkigniter';
 
 class CarParkingService{
     getsCarParking(){
