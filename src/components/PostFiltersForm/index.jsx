@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from 'axios';
-
+import {convertTimestamp} from 'Casting/convertTimestamp';
 
 PostFiltersForm.propTypes ={
 onSubmit: PropTypes.func,
@@ -32,7 +32,7 @@ function PostFiltersForm() {
       <div className="outline">
           <h2>Check Your Car</h2>
           <div class="form__group field">
-<input type="input" class="form__field" placeholder="Search..." name="name" id='name' required       onChange={(e) => setSearchTerm(e.target.value)} 
+<input type="input" class="form__field" placeholder="Search..." name="name" id='name' required onChange={(e) => setSearchTerm(e.target.value)} 
 />
 
 </div>
@@ -72,9 +72,9 @@ function PostFiltersForm() {
                     <td>{parking.rate_id}</td>
                     <td>{parking.slot_id}</td>
                     <td>
-                      <script>
-                      var s = new Date(parking.in_time).toLocaleDateString("en-US")
-console.log(s);
+                      <script >
+                      
+                      Casting.convertTimestamp('parking.in_time')
                       </script>
                       {parking.in_time}</td>
                     <td>{parking.out_time}</td>
@@ -87,8 +87,10 @@ console.log(s);
         }
         </tbody>
     </table>)}
-
+  
       </div>
+
+
     );
 }
 export default PostFiltersForm;
