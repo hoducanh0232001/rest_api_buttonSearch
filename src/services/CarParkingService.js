@@ -1,11 +1,10 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const CARPARKING_REST_API_URL = 'localhost:8686/api/v1/parkigniter';
+const CARPARKING_REST_API_URL = 'http://localhost:8686/api/v1/parking';
 
 class CarParkingService{
-    getsCarParking(){
+   getCarParking(){
     return axios.get(CARPARKING_REST_API_URL);
-    
-    }
+   }
 }
 export default new CarParkingService();

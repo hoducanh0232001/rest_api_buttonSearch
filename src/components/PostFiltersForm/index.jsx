@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from 'axios';
 
@@ -10,76 +10,85 @@ PostFiltersForm.defaultProps = {
     onSubmit: null,
 }
 
-function PostFiltersForm(props) {
-    const { onSubmit } = props;
+function PostFiltersForm() {
     const [searchTerm ,setSearchTerm] = useState('');
     const [posts,setPosts]=useState([])
-    const typingTimeoutRef = useRef(null);
 
     useEffect(() => {
         const loadPosts = async () => {
 
           const response = await axios.get(
-            "localhost:8686/api/v1/parkigniter"
+            'http://localhost:8686/api/v1/parking'
           );
           setPosts(response.data);
 
         };
-    
+  
         loadPosts();
       }, []);
 
     return(
-        <div >
-            <h2>Check Your Car</h2>
-            <input type="text" placeholder="Search" onChange={(e) => setSearchTerm(e.target.value)} />
-            {posts
-          .filter((value) => {
-            if (searchTerm === "") {
-              return "";
-            } else if (
-              value.parkingCode.toLowerCase().includes(searchTerm.toLowerCase())
-            ) {
-              return value;
-            }
-          }).map((parkigniter) =>
-          <table className="table table-striped ">
-          <thead> 
-              
-              <tr>
-                  <td>STT</td>
-                  <td>Mã đỗ xe</td>
-                  <td>Loại xe</td>
-                  <td>Giá</td>
-                  <td>Vị trí</td>
-                  <td>Thời gian vào</td>
-                  <td>Thời gian ra</td>
-                  <td>Tổng thời gian</td>
-                  <td>Tổng tiền</td>
-                  <td>Trạng thái</td>
-              </tr>
-          </thead>
-          <tbody>
-              {
-                  <tr key = {parkigniter.id}>
-                      <td>{parkigniter.id}</td>
-                      <td>{parkigniter.parkingCode}</td>
-                      <td>{parkigniter.vechile_cat_id}</td>
-                      <td>{parkigniter.rate_id}</td>
-                      <td>{parkigniter.slot_id}</td>
-                      <td>{parkigniter.in_time}</td>
-                      <td>{parkigniter.out_time}</td>
-                      <td>{parkigniter.total_time}</td>
-                      <td>{parkigniter.earned_amount}</td>
-                      <td>{parkigniter.paid_status}</td>
+      <div className="container">
+      <div className="outline">
+          <h2>Check Your Car</h2>
+          <div class="form__group field">
+<input type="input" class="form__field" placeholder="Search..." name="name" id='name' required       onChange={(e) => setSearchTerm(e.target.value)} 
+/>
 
-                  </tr>
-               
+</div>
+      </div>
+          {posts
+        .filter((value) => {
+          if (searchTerm === "") {
+            return "";
+          } else if (
+            value.parkingCode.toLowerCase().includes(searchTerm.toLowerCase())
+          ) {
+            return value;
           }
-          </tbody>
-      </table>)}
-                             
-        </div>
+        }).map((parking) =>
+        <table className="table table-striped ">
+        <thead> 
+            
+            <tr>
+                <td>STT</td>
+                <td>Mã đỗ xe</td>
+                <td>Loại xe</td>
+                <td>Giá</td>
+                <td>Vị trí</td>
+                <td>Thời gian vào</td>
+                <td>Thời gian ra</td>
+                <td>Tổng thời gian</td>
+                <td>Tổng tiền</td>
+                <td>Trạng thái</td>
+            </tr>
+        </thead>
+        <tbody>
+            {
+                <tr key = {parking.id}>
+                    <td>{parking.id}</td>
+                    <td>{parking.parkingCode}</td>
+                    <td>{parking.vechile_cat_id}</td>
+                    <td>{parking.rate_id}</td>
+                    <td>{parking.slot_id}</td>
+                    <td>
+                      <script>
+                      var s = new Date(parking.in_time).toLocaleDateString("en-US")
+console.log(s);
+                      </script>
+                      {parking.in_time}</td>
+                    <td>{parking.out_time}</td>
+                    <td>{parking.total_time}</td>
+                    <td>{parking.earned_amount}</td>
+                    <td>{parking.paid_status}</td>
+
+                </tr>
+             
+        }
+        </tbody>
+    </table>)}
+
+      </div>
     );
 }
 export default PostFiltersForm;
